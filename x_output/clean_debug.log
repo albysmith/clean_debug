@@ -1,0 +1,236 @@
+Logfile started, time Mon Apr 20 19:57:31 2020
+[General] 0.00 'GeForce GTX 1060 6GB' NVIDIA-driver v432.0.0 (Vulkan 1.1.99) check=1
+[General] 0.00 Starting new game using gamestart 'startmenu' in 3.10
+[General] 11.06 File I/O: Failed to verify the file signature for file '.\ui\addons\ego_debug\ui.xml' (error: 13)
+[General] 0.00 Loading saved game 'save_009', first pass
+[General] 0.00 - Saved in 3.10 (394166), game time = 0d 03h 17m, gamestart 'x4ep1_gamestart_trade' started in 3.10
+[General] 11832.71 Loading saved game 'save_009', second pass
+[Economy_Verbose] 11832.75 #FLS#;11832.746;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];ANT Drone Carrier Nyanae (Container);0xcb1bf;YMD-338;Second Contact II Flashpoint;antigone;null
+[Economy_Verbose] 11832.75 #FLS#;11832.746;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];ANT Drone Carrier Nyanae (Energy);0xcb1f6;VSQ-559;Second Contact II Flashpoint;antigone;null
+[=ERROR=] 11832.75 'units_size_l_carrier_02' has no shields in engine group 'group_l_engine'! @Artists
+[=ERROR=] 11832.75 LUA Loader API: loaded extensions.sn_mod_support_apis.lua_hotkey_interface
+[=ERROR=] 11832.75 LUA Loader API: loaded extensions.sn_mod_support_apis.lua_interact_menu_interface
+[=ERROR=] 11832.75 LUA Loader API: loaded extensions.sn_mod_support_apis.lua_named_pipes_interface
+[=ERROR=] 11832.75 LUA Loader API: loaded extensions.sn_mod_support_apis.lua_simple_menu_interface
+[=ERROR=] 11832.75 LUA Loader API: loaded extensions.sn_mod_support_apis.lua_time_interface
+[=ERROR=] 11832.75 LUA Loader API: loaded extensions.sn_mod_support_apis.lua_time_pipe_time
+[Economy_Verbose] 11837.04 #FLS#;11837.045;Recon_RequestShip;[md.FactionGoal_Hold_Space.Start];HOP Recon Fighter Pegasus Sentinel;0xcd2db;DFW-161;Second Contact II Flashpoint;holyorder;null
+[Economy_Verbose] 11837.04 #FLS#;11837.045;Recon_RequestShip;[md.FactionGoal_Hold_Space.Start];HOP Recon Fighter Pegasus Sentinel;0xcd2f9;OEY-674;Second Contact II Flashpoint;holyorder;null
+[Economy_Verbose] 11837.04 #FLS#;11837.045;Recon_RequestShip;[md.FactionGoal_Hold_Space.Start];HOP Recon Fighter Pegasus Sentinel;0xcd30f;YSV-214;Second Contact II Flashpoint;holyorder;null
+[=ERROR=] 11837.04 aicontext<move.undock,0x10936>: after waiting 5.00573min in queue, MIN Autonomous Distress Drone (ZVF-969) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_xl_te_kit_energy_03_macro 
+ present dock: shipstorage_gen_xs_01_macro 
+ assigned dock: null
+ => restart
+[Economy_Verbose] 11839.10 #FL#;11839.104;Cleanup;FactionGoal_Hold_Space<inst:58a7f>;(xenon) FactionSubgoal_BuildStation<inst:59648>: station_xen_defence_base_01_macro in Rhy's Defiance 0x3dd0a;null;null;Rhy's Defiance;xenon;null
+[Economy_Verbose] 11854.11 #FL#;11854.112;Cleanup;FactionGoal_Hold_Space<inst:58a17>;(xenon) FactionSubgoal_Recon<inst:5aa0c> in: 0x2380c Empty Space (Faulty Logic I);null;null;Empty Space;xenon;null
+[Economy_Verbose] 11854.11 #FL#;11854.112;Started;FactionGoal_Hold_Space<inst:58a17>;(xenon) FactionSubgoal_Recon<inst:d0d1f> in: 0x238a4 Empty Space (Faulty Logic I);null;null;Empty Space;xenon;null
+[Economy_Verbose] 11857.26 #FL#;11857.264;Cleanup;FactionGoal_Hold_Space<inst:58d98>;(teladi) FactionSubgoal_DefendArea<inst:5a21e> in: Turquoise Sea X 0xc38d ;null;null;Turquoise Sea X;teladi;null
+[Economy_Verbose] 11857.26 #FL#;11857.264;Cleanup;FactionGoal_Hold_Space<inst:58d98>;(teladi) FactionSubgoal_DefendArea<inst:5a247> in: Turquoise Sea X 0xc38d ;null;null;Turquoise Sea X;teladi;null
+[Economy_Verbose] 11857.26 #FL#;11857.264;Started;FactionGoal_Hold_Space<inst:58d98>;(teladi) FactionSubgoal_DefendArea<inst:d1786> in: Turquoise Sea X 0xc38d ;null;null;Turquoise Sea X;teladi;null
+[Economy_Verbose] 11857.26 #FL#;11857.264;Started;FactionGoal_Hold_Space<inst:58d98>;(teladi) FactionSubgoal_DefendArea<inst:d1796> in: Turquoise Sea X 0xc38d ;null;null;Turquoise Sea X;teladi;null
+[Economy_Verbose] 11859.34 #FL#;11859.339;Cleanup;FactionGoal_Hold_Space<inst:58d8b>;(split) FactionSubgoal_Recon<inst:5b348> in: 0x6c42 Empty Space (Eleventh Hour);null;null;Empty Space;split;null
+[Economy_Verbose] 11859.34 #FL#;11859.339;Started;FactionGoal_Hold_Space<inst:58d8b>;(split) FactionSubgoal_Recon<inst:d1d6d> in: 0x6b59 Empty Space (Eleventh Hour);null;null;Empty Space;split;null
+[=ERROR=] 11859.34 aicontext<move.undock,0x18d01>: after waiting 5.00412min in queue, FRF Autonomous Distress Drone (EZP-457) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_xl_cargo_hauler_2_macro 
+ present dock: shipstorage_gen_xs_01_macro 
+ assigned dock: null
+ => restart
+[=ERROR=] 11863.38 aicontext<move.undock,0x3939c>: after waiting 5.01131min in queue, ANT Autonomous Distress Drone (ZYB-941) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_l_dv_kit_new_container_01_macro 
+ present dock: shipstorage_gen_xs_01_macro 
+ assigned dock: null
+ => restart
+[Economy_Verbose] 11865.32 #DRAIN#;11865.32;drain;NULL;0x0;Drain_Stations;0xfefe;ANT Argon Trading Station;0x1cdff;The Void;The Void;Empty Space;Antimatter Converters;1203;12030
+[Economy_Verbose] 11865.32 #DRAIN#;11865.32;drain;NULL;0x0;Drain_Stations;0xfefe;ANT Argon Trading Station;0x1cdff;The Void;The Void;Empty Space;Drone Components;570;17100
+[Economy_Verbose] 11865.32 #DRAIN#;11865.32;drain;NULL;0x0;Drain_Stations;0xfefe;ANT Argon Trading Station;0x1cdff;The Void;The Void;Empty Space;Engine Parts;1236;18540
+[Economy_Verbose] 11865.32 #DRAIN#;11865.32;drain;NULL;0x0;Drain_Stations;0xfefe;ANT Argon Trading Station;0x1cdff;The Void;The Void;Empty Space;Helium;3051;18306
+[Economy_Verbose] 11865.32 #DRAIN#;11865.32;drain;NULL;0x0;Drain_Stations;0xfefe;ANT Argon Trading Station;0x1cdff;The Void;The Void;Empty Space;Hydrogen;2968;17808
+[Economy_Verbose] 11865.32 #DRAIN#;11865.32;drain;NULL;0x0;Drain_Stations;0xfefe;ANT Argon Trading Station;0x1cdff;The Void;The Void;Empty Space;Methane;2382;14292
+[Economy_Verbose] 11865.32 #DRAIN#;11865.32;drain;NULL;0x0;Drain_Stations;0xfefe;ANT Argon Trading Station;0x1cdff;The Void;The Void;Empty Space;Water;1964;11784
+[Scripts] 11865.83 *** aicontext<order.trade.perform,0xa4fd>: 11865.825 'FRF Gas Miner Wyvern (Gas)'(job: 'freesplit_free_miner_ml_liquid_deepspace_single') TRADE RUN FAILED! Error: ERR_NO_CARGO_SPACE
+[Economy_Verbose] 11867.23 #FLS#;11867.227;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party M;0xd3440;OVA-628;Tharka's Cascade XV;xenon;null
+[Economy_Verbose] 11867.23 #FLS#;11867.227;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party M;0xd3451;JGC-201;Tharka's Cascade XV;xenon;null
+[Economy_Verbose] 11867.23 #FLS#;11867.227;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party M;0xd3462;KIE-435;Tharka's Cascade XV;xenon;null
+[Economy_Verbose] 11872.73 #FL#;11872.731;Cleanup;FactionGoal_Hold_Space<inst:58cd5>;(paranid) FactionSubgoal_DefendArea<inst:5a09a> in: Litany of Fury IX 0xf3f9 ;null;null;Litany of Fury IX;paranid;null
+[Economy_Verbose] 11872.73 #FL#;11872.731;Cleanup;FactionGoal_Hold_Space<inst:58cd5>;(paranid) FactionSubgoal_DefendArea<inst:599f7> in: Litany of Fury IX 0xf3f9 ;null;null;Litany of Fury IX;paranid;null
+[Economy_Verbose] 11872.73 #FL#;11872.731;Started;FactionGoal_Hold_Space<inst:58cd5>;(paranid) FactionSubgoal_DefendArea<inst:d449e> in: Litany of Fury IX 0xf3f9 ;null;null;Litany of Fury IX;paranid;null
+[Economy_Verbose] 11872.73 #FL#;11872.731;Started;FactionGoal_Hold_Space<inst:58cd5>;(paranid) FactionSubgoal_DefendArea<inst:d44ae> in: Litany of Fury IX 0xf3f9 ;null;null;Litany of Fury IX;paranid;null
+[Economy_Verbose] 11872.83 #FLS#;11872.825;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];PAR Patrol Destroyer Odysseus Vanguard;0xd4559;UZZ-309;Litany of Fury IX;paranid;null
+[Economy_Verbose] 11873.43 #FL#;11873.429;Cleanup;FactionGoal_Hold_Space<inst:58d8b>;(split) FactionSubgoal_Recon<inst:5b4e5> in: 0x6b59 Empty Space (Eleventh Hour);null;null;Empty Space;split;null
+[Economy_Verbose] 11873.43 #FL#;11873.429;Started;FactionGoal_Hold_Space<inst:58d8b>;(split) FactionSubgoal_Recon<inst:d4735> in: 0x6de1 Empty Space (Eleventh Hour);null;null;Empty Space;split;null
+[=ERROR=] 11873.64 aicontext<move.undock,0x1161a>: after waiting 5.0051min in queue, ARG Autonomous Distress Drone (PXE-673) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_l_kit_container_02_macro 
+ present dock: shipstorage_gen_xs_01_macro 
+ assigned dock: null
+ => restart
+[=ERROR=] 11874.44 aicontext<order.mining.collect.ship,0x2040b>: Ship trying to gather minerals with collector drones, but has none
+[=ERROR=] 11875.82 aicontext<order.mining.collect.ship,0x24611>: Ship trying to gather minerals with collector drones, but has none
+[Economy_Verbose] 11878.36 #FL#;11878.358;Cleanup;FactionGoal_Hold_Space<inst:58b28>;(freesplit) FactionSubgoal_Recon<inst:5ad16> in: 0x3528 Empty Space (Tharka's Ravine XXIV);null;null;Empty Space;freesplit;null
+[Economy_Verbose] 11878.36 #FL#;11878.358;Started;FactionGoal_Hold_Space<inst:58b28>;(freesplit) FactionSubgoal_Recon<inst:d56c7> in: 0x3173 Empty Space (Tharka's Ravine XXIV);null;null;Empty Space;freesplit;null
+[Economy_Verbose] 11890.31 #FLE#;11890.31;RequestCommandeeredStationTransporter;TEL Energy Trader Tern Vanguard;0x3fdcb;PXW-876;Bright Promise;teladi;Energy Cells;0x3fb0e;AWR-813
+[Economy_Verbose] 11892.93 #FLE#;11892.928;SeedLowTechFactory;XEN Xenon Factory;0xdd1bc;QSE-441;Tharka's Cascade XV;xenon;Energy Cells
+[Economy_Verbose] 11894.11 #FL#;11894.11;Cleanup;FactionGoal_Hold_Space<inst:58a99>;(xenon) FactionSubgoal_DefendArea<inst:5a0f1> in: Scale Plate Green VII 0x46b24 ;null;null;Scale Plate Green VII;xenon;null
+[Economy_Verbose] 11894.11 #FL#;11894.11;Started;FactionGoal_Hold_Space<inst:58a99>;(xenon) FactionSubgoal_DefendArea<inst:dddd3> in: Scale Plate Green VII 0x46b24 ;null;null;Scale Plate Green VII;xenon;null
+[=ERROR=] 11901.45 aicontext<order.mining.collect.ship,0x42451>: Ship trying to gather minerals with collector drones, but has none
+[Economy_Verbose] 11901.60 #FLS#;11901.604;Recon_RequestShip;[md.FactionGoal_Invade_Space.Start];ANT Recon Fighter Discoverer Sentinel;0xe1735;PTG-007;True Sight;antigone;null
+[=ERROR=] 11902.74 aicontext<order.mining.collect.ship,0x24611>: Ship trying to gather minerals with collector drones, but has none
+[Economy_Verbose] 11906.70 #FLS#;11906.704;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0x1298;TTV-863;Emperor's Pride IV;xenon;Emperor's Pride VI
+[Economy_Verbose] 11906.70 #FLS#;11906.704;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0x12c0;FIN-379;Emperor's Pride IV;xenon;Atiya's Misfortune I
+[Economy_Verbose] 11906.78 #FL#;11906.775;StationComplete;FactionGoal_Hold_Space<inst:589f0>;(xenon) FactionSubgoal_BuildStation<inst:59691>: station_xen_defence_base_01_macro in Atiya's Misfortune I 0x2230b;XEN Xenon Defence Platform;JES-320;Atiya's Misfortune I;xenon;null
+[Economy_Verbose] 11913.14 #FLS#;11913.14;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0x1286;GGT-571;Emperor's Pride IV;xenon;Emperor's Pride VI
+[Economy_Verbose] 11913.16 #FLS#;11913.157;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party N;0x1290;USV-964;Emperor's Pride IV;xenon;Scale Plate Green I
+[Economy_Verbose] 11913.16 #FLS#;11913.157;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0x127c;GTB-600;Emperor's Pride IV;xenon;Scale Plate Green I
+[Economy_Verbose] 11913.23 #FLS#;11913.225;DefendArea_ShipBuilt;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party M;0x1872;LWB-600;Matrix #451;xenon;Matrix #598
+[Economy_Verbose] 11913.23 #FLS#;11913.225;DefendArea_ShipBuilt;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party M;0x1868;RMW-840;Matrix #451;xenon;Matrix #598
+[Economy_Verbose] 11921.15 #FL#;11921.152;Cleanup;FactionGoal_Hold_Space<inst:58a4b>;(xenon) FactionSubgoal_Recon<inst:5aa99> in: 0x2d109 Empty Space (Matrix #451);null;null;Empty Space;xenon;null
+[Economy_Verbose] 11921.15 #FL#;11921.152;Started;FactionGoal_Hold_Space<inst:58a4b>;(xenon) FactionSubgoal_Recon<inst:ec407> in: 0x2d02e Empty Space (Matrix #451);null;null;Empty Space;xenon;null
+[Economy_Verbose] 11923.96 #FLS#;11923.957;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];ZYA Fighter Squadron Chimera;0xedfcc;JQU-962;Matrix #598;split;null
+[=ERROR=] 11924.20 aicontext<move.undock,0x3d518>: after waiting 5.00622min in queue, HOP Autonomous Distress Drone (PDQ-393) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_l_liquid_freighter_macro 
+ present dock: shipstorage_gen_xs_01_macro 
+ assigned dock: null
+ => restart
+[Economy_Verbose] 11924.84 #FL#;11924.842;Cleanup;FactionGoal_Hold_Space<inst:589f0>;(xenon) FactionSubgoal_BuildStation<inst:59691>: station_xen_defence_base_01_macro in Atiya's Misfortune I 0x2230b;null;null;Atiya's Misfortune I;xenon;null
+[Economy_Verbose] 11926.69 #FL#;11926.686;Cleanup;FactionGoal_Hold_Space<inst:58a7f>;(xenon) FactionSubgoal_Recon<inst:5ab44> in: 0x3de57 Empty Space (Rhy's Defiance);null;null;Empty Space;xenon;null
+[Economy_Verbose] 11926.69 #FL#;11926.686;Started;FactionGoal_Hold_Space<inst:58a7f>;(xenon) FactionSubgoal_Recon<inst:ef7e5> in: 0x3de57 Empty Space (Rhy's Defiance);null;null;Empty Space;xenon;null
+[Economy_Verbose] 11928.87 #DRAIN#;11928.87;drain;NULL;0x0;Drain_Stations;0xfefe;TEL Teladi Trading Station;0x1ec21;Open Market;Open Market;Empty Space;Helium;4932;29592
+[Economy_Verbose] 11928.87 #DRAIN#;11928.87;drain;NULL;0x0;Drain_Stations;0xfefe;TEL Teladi Trading Station;0x1ec21;Open Market;Open Market;Empty Space;Medical Supplies;955;1910
+[Economy_Verbose] 11928.87 #DRAIN#;11928.87;drain;NULL;0x0;Drain_Stations;0xfefe;TEL Teladi Trading Station;0x1ec21;Open Market;Open Market;Empty Space;Methane;3010;18060
+[Economy_Verbose] 11928.87 #DRAIN#;11928.87;drain;NULL;0x0;Drain_Stations;0xfefe;TEL Teladi Trading Station;0x1ec21;Open Market;Open Market;Empty Space;Water;3471;20826
+[Economy_Verbose] 11930.51 #FLS#;11930.511;DefendArea_ShipBuilt;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party M;0xd3462;KIE-435;Tharka's Cascade XV;xenon;Atiya's Misfortune I
+[=ERROR=] 11931.21 aicontext<order.mining.collect.ship,0x42451>: Ship trying to gather minerals with collector drones, but has none
+[Scripts] 11933.15 *** aicontext<order.trade.perform,0x307f>: 11933.148 'FRF Gas Miner Alligator (Gas)'(job: 'freesplit_free_miner_m_liquid') TRADE RUN FAILED! Error: ERR_NO_CARGO_SPACE
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0xf3445;ERE-344;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0xf3456;EKS-444;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0xf3467;TAP-536;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party N;0xf3478;SFL-130;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0xf3487;WZK-053;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0xf3498;GHN-633;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0xf34a9;EHT-136;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party N;0xf34ba;MFY-398;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0xf34c9;KWY-493;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party N;0xf34da;BSW-230;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0xf34e9;KHP-922;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0xf34fa;ABH-231;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0xf350b;XGJ-136;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0xf351c;DFG-489;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party N;0xf352d;PKB-031;Matrix #451;xenon;null
+[Economy_Verbose] 11934.25 #FLS#;11934.251;DefendArea_RequestShip;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party N;0xf353c;DLC-649;Matrix #451;xenon;null
+[=ERROR=] 11935.84 aicontext<move.undock,0x24d3a>: after waiting 5.00369min in queue, XEN Defence Drone (PLH-013) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_xl_xenon_01_macro 
+ present dock: units_size_xl_xenon_01_shipstorage_s_macro 
+ assigned dock: null
+ => restart
+[=ERROR=] 11935.84 aicontext<move.undock,0x24cfe>: after waiting 5.00369min in queue, XEN Defence Drone (ISV-062) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_xl_xenon_01_macro 
+ present dock: units_size_xl_xenon_01_shipstorage_s_macro 
+ assigned dock: null
+ => restart
+[Economy_Verbose] 11936.54 #FLS#;11936.544;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];ZYA Fighter Squadron Dragon;0xf42a6;AMO-373;Matrix #598;split;null
+[=ERROR=] 11936.58 aicontext<order.mining.collect.ship,0x2040b>: Ship trying to gather minerals with collector drones, but has none
+[Economy_Verbose] 11938.75 #FLS#;11938.75;DefendArea_ShipBuilt;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party M;0xd3440;OVA-628;Tharka's Cascade XV;xenon;Matrix #9
+[=ERROR=] 11938.78 aicontext<move.undock,0x5cc0>: after waiting 5.00276min in queue, PAR Autonomous Distress Drone (XWQ-097) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_l_dv_kit_new_container_01_macro 
+ present dock: shipstorage_gen_xs_01_macro 
+ assigned dock: null
+ => restart
+[=ERROR=] 11942.70 aicontext<move.undock,0x1e974>: after waiting 5.00281min in queue, FRF Autonomous Distress Drone (ERB-921) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_l_liquid_freighter_macro 
+ present dock: shipstorage_gen_xs_01_macro 
+ assigned dock: null
+ => restart
+[Economy_Verbose] 11945.27 #FL#;11945.266;handoff;md.FactionGoal_Invade_Space.Start<inst:58ddd>;null;null;null;Rhy's Defiance;split;xenon
+[Economy_Verbose] 11946.27 #FL#;11946.273;Cleanup;FactionGoal_Invade_Space<inst:58ddd>;(split) FactionSubgoal_DefendArea<inst:5a2e4> in: Rhy's Defiance 0x3dd0a ;null;null;Rhy's Defiance;split;null
+[Economy_Verbose] 11946.27 #FL#;11946.273;Cleanup;FactionGoal_Invade_Space<inst:58ddd>;(split) FactionSubgoal_DefendArea<inst:5a29e> in: Rhy's Defiance 0x3dd0a ;null;null;Rhy's Defiance;split;null
+[Economy_Verbose] 11946.27 #FL#;11946.273;Cleanup;FactionGoal_Invade_Space<inst:58ddd>;(split) FactionSubgoal_BuildStation<inst:596af>: station_gen_factory_base_01_macro in Rhy's Defiance 0x3dd0a;null;null;Rhy's Defiance;split;null
+[Economy_Verbose] 11946.27 #FL#;11946.273;Cleanup;FactionGoal_Invade_Space<inst:58ddd>;(split) FactionSubgoal_Recon<inst:5b575> in: 0x3de57 Empty Space (Rhy's Defiance);null;null;Empty Space;split;null
+[Economy_Verbose] 11946.27 #FL#;11946.273;cleanup;md.FactionGoal_Invade_Space.Start<inst:58ddd>;null;null;null;Rhy's Defiance;split;xenon
+[=ERROR=] 11947.21 aicontext<move.undock,0x4225c>: after waiting 5.00244min in queue, ZYA Autonomous Distress Drone (FFG-626) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_xl_cargo_hauler_3_macro 
+ present dock: shipstorage_gen_xs_01_macro 
+ assigned dock: null
+ => restart
+[=ERROR=] 11947.36 aicontext<order.mining.collect.ship,0x24611>: Ship trying to gather minerals with collector drones, but has none
+[=ERROR=] 11949.17 aicontext<move.undock,0x3022>: after waiting 5.00277min in queue, FRF Autonomous Distress Drone (WZM-824) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_xl_cargo_hauler_2_macro 
+ present dock: shipstorage_gen_xs_01_macro 
+ assigned dock: null
+ => restart
+[Economy_Verbose] 11951.74 #FL#;11951.745;Cleanup;FactionGoal_Hold_Space<inst:589f0>;(xenon) FactionSubgoal_DefendArea<inst:5a559> in: Atiya's Misfortune I 0x2230b ;null;null;Atiya's Misfortune I;xenon;null
+[Economy_Verbose] 11951.74 #FL#;11951.745;Started;FactionGoal_Hold_Space<inst:589f0>;(xenon) FactionSubgoal_DefendArea<inst:fc064> in: Atiya's Misfortune I 0x2230b ;null;null;Atiya's Misfortune I;xenon;null
+[Economy_Verbose] 11953.27 #FLS#;11953.269;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];TEL Fighter Squadron Buzzard Sentinel;0xfcb56;INC-663;Turquoise Sea X;teladi;null
+[Economy_Verbose] 11953.27 #FLS#;11953.269;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];TEL Fighter Squadron Drostan;0xfcb6e;CXF-435;Turquoise Sea X;teladi;null
+[Economy_Verbose] 11953.27 #FLS#;11953.269;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];TEL Fighter Squadron Buzzard Sentinel;0xfcb84;AMY-893;Turquoise Sea X;teladi;null
+[Economy_Verbose] 11953.27 #FLS#;11953.269;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];TEL Fighter Squadron Falcon Sentinel;0xfcb9c;TXL-032;Turquoise Sea X;teladi;null
+[Economy_Verbose] 11953.27 #FLS#;11953.269;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];TEL Fighter Squadron Triath Sentinel;0xfcbb3;FAP-946;Turquoise Sea X;teladi;null
+[Economy_Verbose] 11959.27 #FLS#;11959.266;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0x12a2;RUO-871;Emperor's Pride IV;xenon;Scale Plate Green I
+[Economy_Verbose] 11959.27 #FLS#;11959.266;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0x12b6;OLM-135;Emperor's Pride IV;xenon;Atiya's Misfortune I
+[Economy_Verbose] 11960.00 #FLS#;11959.999;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0x124e;XCQ-767;Emperor's Pride IV;xenon;Matrix #598
+[Economy_Verbose] 11961.33 #FLS#;11961.333;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party N;0x1274;NCJ-424;Emperor's Pride IV;xenon;Matrix #598
+[Economy_Verbose] 11964.36 #FLS#;11964.36;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];ANT Fighter Squadron Pulsar Vanguard;0x8caa3c;MNR-996;Second Contact II Flashpoint;antigone;null
+[Economy_Verbose] 11964.38 #FLS#;11964.382;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party N;0x126c;ONT-952;Emperor's Pride IV;xenon;Scale Plate Green I
+[Economy_Verbose] 11964.83 #FL#;11964.825;Cleanup;FactionGoal_Hold_Space<inst:58a7f>;(xenon) FactionSubgoal_DefendArea<inst:5a478> in: Rhy's Defiance 0x3dd0a ;null;null;Rhy's Defiance;xenon;null
+[Economy_Verbose] 11964.83 #FL#;11964.825;Cleanup;FactionGoal_Hold_Space<inst:58a7f>;(xenon) FactionSubgoal_DefendArea<inst:59dc9> in: Rhy's Defiance 0x3dd0a ;null;null;Rhy's Defiance;xenon;null
+[Economy_Verbose] 11964.83 #FL#;11964.825;Cleanup;FactionGoal_Hold_Space<inst:58a7f>;(xenon) FactionSubgoal_DefendArea<inst:5a1fe> in: Rhy's Defiance 0x3dd0a ;null;null;Rhy's Defiance;xenon;null
+[Economy_Verbose] 11965.78 #FLS#;11965.782;DefendArea_ShipBuilt;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party M;0x187c;KTB-234;Matrix #451;xenon;Scale Plate Green I
+[Economy_Verbose] 11971.48 #DRAIN#;11971.485;drain;NULL;0x0;Drain_Stations;0xfefe;TEL Teladi Trading Station;0x1f1e6;Grand Exchange;Grand Exchange III;Empty Space;Claytronics;810;19440
+[Economy_Verbose] 11971.48 #DRAIN#;11971.485;drain;NULL;0x0;Drain_Stations;0xfefe;TEL Teladi Trading Station;0x1f1e6;Grand Exchange;Grand Exchange III;Empty Space;Drone Components;1136;34080
+[Economy_Verbose] 11971.48 #DRAIN#;11971.485;drain;NULL;0x0;Drain_Stations;0xfefe;TEL Teladi Trading Station;0x1f1e6;Grand Exchange;Grand Exchange III;Empty Space;Field Coils;1570;23550
+[Economy_Verbose] 11971.48 #DRAIN#;11971.485;drain;NULL;0x0;Drain_Stations;0xfefe;TEL Teladi Trading Station;0x1f1e6;Grand Exchange;Grand Exchange III;Empty Space;Hull Parts;2440;29280
+[Economy_Verbose] 11971.48 #DRAIN#;11971.485;drain;NULL;0x0;Drain_Stations;0xfefe;TEL Teladi Trading Station;0x1f1e6;Grand Exchange;Grand Exchange III;Empty Space;Medical Supplies;844;1688
+[Economy_Verbose] 11971.48 #DRAIN#;11971.485;drain;NULL;0x0;Drain_Stations;0xfefe;TEL Teladi Trading Station;0x1f1e6;Grand Exchange;Grand Exchange III;Empty Space;Methane;3641;21846
+[Economy_Verbose] 11971.48 #DRAIN#;11971.485;drain;NULL;0x0;Drain_Stations;0xfefe;TEL Teladi Trading Station;0x1f1e6;Grand Exchange;Grand Exchange III;Empty Space;Water;4860;29160
+[Economy_Verbose] 11975.73 #FL#;11975.728;prepare_for_invasion;md.FactionGoal_Invade_Space.Start<inst:84ca07>;null;null;null;Rhy's Defiance;split;xenon
+[Economy_Verbose] 11976.56 #FL#;11976.565;Started;FactionGoal_Hold_Space<inst:58a7f>;(xenon) FactionSubgoal_DefendArea<inst:8d0a33> in: Rhy's Defiance 0x3dd0a ;null;null;Rhy's Defiance;xenon;null
+[Economy_Verbose] 11976.56 #FL#;11976.565;Started;FactionGoal_Hold_Space<inst:58a7f>;(xenon) FactionSubgoal_DefendArea<inst:8d0a96> in: Rhy's Defiance 0x3dd0a ;null;null;Rhy's Defiance;xenon;null
+[Economy_Verbose] 11976.56 #FL#;11976.565;Started;FactionGoal_Hold_Space<inst:58a7f>;(xenon) FactionSubgoal_DefendArea<inst:8d0a88> in: Rhy's Defiance 0x3dd0a ;null;null;Rhy's Defiance;xenon;null
+[Economy_Verbose] 11976.73 #FL#;11976.729;Started;FactionGoal_Invade_Space<inst:84ca07>;(split) FactionSubgoal_DefendArea<inst:8d0b42> in: Family Kritt 0x4977a ;null;null;Family Kritt;split;null
+[Economy_Verbose] 11976.73 #FL#;11976.729;Started;FactionGoal_Invade_Space<inst:84ca07>;(split) FactionSubgoal_DefendArea<inst:8cb71e> in: Family Kritt 0x4977a ;null;null;Family Kritt;split;null
+[Economy_Verbose] 11976.73 #FL#;11976.729;Started;FactionGoal_Invade_Space<inst:84ca07>;(split) FactionSubgoal_DefendArea<inst:8cc3c9> in: Family Kritt 0x4977a ;null;null;Family Kritt;split;null
+[Economy_Verbose] 11976.73 #FL#;11976.729;Started;FactionGoal_Invade_Space<inst:84ca07>;(split) FactionSubgoal_Recon<inst:8cb70c> in: 0x3de57 Empty Space (Rhy's Defiance);null;null;Empty Space;split;null
+[Economy_Verbose] 11976.75 #FLS#;11976.753;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];ZYA Fighter Squadron Dragon;0x80c78d;VDG-410;Family Kritt;split;null
+[Economy_Verbose] 11976.75 #FLS#;11976.753;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];ZYA Fighter Squadron Chimera;0x8cb5b8;JJJ-733;Family Kritt;split;null
+[Economy_Verbose] 11976.75 #FLS#;11976.753;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];ZYA Fighter Squadron Chimera;0x8cc622;PGG-841;Family Kritt;split;null
+[Economy_Verbose] 11976.75 #FLS#;11976.753;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];ZYA Fighter Squadron Dragon;0x8cbf27;JYD-233;Family Kritt;split;null
+[Economy_Verbose] 11976.75 #FLS#;11976.753;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];ZYA Fighter Squadron Dragon;0x8cb890;YXX-359;Family Kritt;split;null
+[Economy_Verbose] 11980.22 #FLS#;11980.221;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party M;0x8d2ae0;ABR-336;Emperor's Pride IV;xenon;null
+[Economy_Verbose] 11981.41 #FLS#;11981.405;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party M;0x8d3190;KGG-670;Tharka's Cascade XV;xenon;null
+[Economy_Verbose] 11981.41 #FLS#;11981.405;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party M;0x8d31a3;OGK-686;Tharka's Cascade XV;xenon;null
+[Economy_Verbose] 11981.41 #FLS#;11981.405;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party N;0x8d31bf;DYE-215;Tharka's Cascade XV;xenon;null
+[Economy_Verbose] 11981.41 #FLS#;11981.405;DefendArea_RequestShip;[md.FactionGoal_Invade_Space.Start];XEN Raiding Party M;0x8d31b0;WCH-787;Tharka's Cascade XV;xenon;null
+[=ERROR=] 11982.38 aicontext<order.mining.collect.ship,0x2040b>: Ship trying to gather minerals with collector drones, but has none
+[=ERROR=] 11985.87 aicontext<move.undock,0x3d51c>: after waiting 5.00309min in queue, HOP Autonomous Distress Drone (JRR-917) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_l_liquid_freighter_macro 
+ present dock: shipstorage_gen_xs_01_macro 
+ assigned dock: null
+ => restart
+[=ERROR=] 11990.69 aicontext<move.undock,0x3026>: after waiting 5.00396min in queue, FRF Autonomous Distress Drone (ZNP-965) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_xl_cargo_hauler_2_macro 
+ present dock: shipstorage_gen_xs_01_macro 
+ assigned dock: null
+ => restart
+[Economy_Verbose] 11992.29 #FLS#;11992.289;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0x1258;RTX-860;Emperor's Pride IV;xenon;Matrix #9
+[=ERROR=] 12001.14 aicontext<order.mining.collect.ship,0x42451>: Ship trying to gather minerals with collector drones, but has none
+[=ERROR=] 12009.94 aicontext<order.mining.collect.ship,0x24611>: Ship trying to gather minerals with collector drones, but has none
+[Economy_Verbose] 12014.08 #FLS#;12014.084;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party M;0x12ac;KBB-798;Emperor's Pride IV;xenon;Emperor's Pride VI
+[=ERROR=] 12016.16 aicontext<move.undock,0x1eb92>: after waiting 5.00425min in queue, ZYA Autonomous Distress Drone (CCP-205) does not have an assigned dock. 
+ attention: ingalaxy 
+ undocking from: units_size_xl_cargo_hauler_3_macro 
+ present dock: shipstorage_gen_xs_01_macro 
+ assigned dock: null
+ => restart
+[Economy_Verbose] 12020.00 #FLS#;12020.002;DefendArea_ShipBuilt;[md.FactionGoal_Hold_Space.Start];XEN Raiding Party N;0xf353c;DLC-649;Matrix #451;xenon;Matrix #598
