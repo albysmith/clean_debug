@@ -4,118 +4,38 @@ use std::io;
 use std::io::{Read, Write};
 use std::str::FromStr;
 
-#[derive(PartialEq)]
-pub enum ErrTag {
-    General,
-    Error,
-    Scripts,
-    ScriptsVerbose,
-    EconomyVerbose,
-    Combat,
-    Savegame,
-    None,
-    // All,
-}
-
-// impl FromStr for ErrTag {
-//     type Err = &'static str;
-
-//     fn from_str(s: &str) -> Result<Self, Self::Err> {
-//         match s {
-//             "general" => Ok(ErrTag::General),
-//             "error" => Ok(ErrTag::Error),
-//             "scripts" => Ok(ErrTag::Scripts),
-//             "scripts_verbose" => Ok(ErrTag::ScriptsVerbose),
-//             "economy_verbose" => Ok(ErrTag::EconomyVerbose),
-//             "combat" => Ok(ErrTag::Combat),
-//             "savegame" => Ok(ErrTag::Savegame),
-//             "none" => Ok(ErrTag::None),
-//             // "all" => Ok(ErrTag::All),
-//             _ => Err("no match"),
-//         }
-//     }
+// #[derive(PartialEq)]
+// pub enum ErrTag {
+//     General,
+//     Error,
+//     Scripts,
+//     ScriptsVerbose,
+//     EconomyVerbose,
+//     Combat,
+//     Savegame,
+//     None,
+//     Custom,
 // }
 
 #[derive(Default, Debug, Clone)]
-pub struct LogData {
-    pub general: Vec<General>,
-    pub error: Vec<Error>,
-    pub scripts: Vec<Scripts>,
-    pub scripts_verbose: Vec<ScriptsVerbose>,
-    pub economy_verbose: Vec<EconomyVerbose>,
-    pub combat: Vec<Combat>,
-    pub savegame: Vec<Savegame>,
-    pub none: Vec<None>,
-}
-
-#[derive(Default, Debug, Clone)]
-pub struct General {
-    pub string: String,
-    pub time: f64,
-    pub tag: String,
-    pub message: String,
-}
-#[derive(Default, Debug, Clone)]
-pub struct Error {
-    pub string: String,
-    pub time: f64,
-    pub tag: String,
-    pub message: String,
-}
-#[derive(Default, Debug, Clone)]
-pub struct Scripts {
-    pub string: String,
-    pub time: f64,
-    pub tag: String,
-    pub message: String,
-}
-#[derive(Default, Debug, Clone)]
-pub struct ScriptsVerbose {
-    pub string: String,
-    pub time: f64,
-    pub tag: String,
-    pub message: String,
-}
-#[derive(Default, Debug, Clone)]
-pub struct EconomyVerbose {
-    pub string: String,
-    pub time: f64,
-    pub tag: String,
-    pub message: String,
-}
-#[derive(Default, Debug, Clone)]
-pub struct Combat {
-    pub string: String,
-    pub time: f64,
-    pub tag: String,
-    pub message: String,
-}
-#[derive(Default, Debug, Clone)]
-pub struct Savegame {
-    pub string: String,
-    pub time: f64,
-    pub tag: String,
-    pub message: String,
-}
-#[derive(Default, Debug, Clone)]
-pub struct None {
+pub struct Entry {
     pub string: String,
     pub time: f64,
     pub tag: String,
     pub message: String,
 }
 
-pub fn parse_debug(debug: &String) -> LogData {
+pub fn parse_debug(debug: &String) -> (Vec<Entry>, Vec<String>) {
     // let mut parsed_log_entries = LogEntries::default();
-    let mut logdata: LogData = LogData::default();
-    let mut print_string = String::new();
-
+    let mut logdata = vec![];
+    // let mut print_string = String::new();
+    let mut tag_list = vec![];
     let log = debug.replace("\r\n", " NEWLINE ");
     let mut timeflag = false;
     let mut string = String::new();
     let mut message = String::new();
     let mut time = 0.0;
-    let mut enum_flag = ErrTag::General;
+    let mut enum_flag = String::new();
     for word in log.split_whitespace() {
         if timeflag {
             // println!("{}", word);
@@ -124,36 +44,35 @@ pub fn parse_debug(debug: &String) -> LogData {
             // println!("{}", time);
             timeflag = false;
         } else if let Some(tag) = sort_log(word) {
+            if !tag_list.contains(&tag) {
+                tag_list.push(tag.clone());
+            }
+
             // do something with the old string and get it out of here
-            if (enum_flag == ErrTag::General
-                && (string.contains("======================================")
-                    || string.contains("(error: 14)")
-                    || string.contains(".sig")))
-                || (enum_flag == ErrTag::Error && string.contains(".sig"))
+            if string.contains("======================================")
+                || string.contains("(error: 14)")
+                || string.contains(".sig")
             {
+                string = word.to_string();
+                message = String::new();
+                timeflag = true;
+            } else if string.contains("*** Context:md") && !string.contains("NEWLINE") {
+                // string.push_str(&format!(" {}", word));
+                // message.push_str(&format!("{} ", word));
+                string = word.to_string();
+                message = String::new();
+                timeflag = true;
             } else {
                 string = string.replace("NEWLINE", "\r\n");
-                match enum_flag {
-                    ErrTag::General => set_general_struct(&mut logdata, string, time, message),
-                    ErrTag::Error => set_error_struct(&mut logdata, string, time, message),
-                    ErrTag::Scripts => set_scripts_struct(&mut logdata, string, time, message),
-                    ErrTag::ScriptsVerbose => {
-                        set_scripts_verbose_struct(&mut logdata, string, time, message)
-                    }
-                    ErrTag::EconomyVerbose => {
-                        set_economy_verbose_struct(&mut logdata, string, time, message)
-                    }
-                    ErrTag::Combat => set_combat_struct(&mut logdata, string, time, message),
-                    ErrTag::Savegame => set_savegame_struct(&mut logdata, string, time, message),
-                    ErrTag::None => set_none_struct(&mut logdata, string, time, message),
-                }
+                message = message.replace("NEWLINE", "\r\n");
+                set_entry_struct(&mut logdata, string, time, message, enum_flag);
+                string = word.to_string();
+                message = String::new();
+                timeflag = true;
             };
-
-            // new string and new enumflag
             enum_flag = tag;
-            string = word.to_string();
-            message = String::new();
-            timeflag = true;
+
+        // new string and new enumflag
         } else if timeflag == false {
             //  oldstring
             string.push_str(&format!(" {}", word));
@@ -163,151 +82,54 @@ pub fn parse_debug(debug: &String) -> LogData {
         // some handling for adding the time to the error as some TIME type
     }
 
-    // for entry in logdata.general {
-    //     // list.push(entry.string);
-    //     print_string.push_str(&entry.string)
-    // }
-    // for entry in logdata.error {
-    //     print_string.push_str(&entry.string)
-    // }
-    // for entry in logdata.scripts {
-    //     print_string.push_str(&entry.string)
-    // }
-    // for entry in logdata.scripts_verbose {
-    //     print_string.push_str(&entry.string)
-    // }
-    // for entry in logdata.economy_verbose {
-    //     print_string.push_str(&entry.string)
-    // }
-    // for entry in logdata.combat {
-    //     print_string.push_str(&entry.string)
-    // }
-    // for entry in logdata.savegame {
-    //     print_string.push_str(&entry.string)
-    // }
-    // for entry in logdata.none {
-    //     print_string.push_str(&entry.string)
-    // }
-    // logdata.general.into_iter().map(|x| print_string.push_str(&x.string));
-    // logdata.error.into_iter().map(|x| print_string.push_str(&x.string));
-    // logdata.scripts.into_iter().map(|x| print_string.push_str(&x.string));
-    // logdata.scripts_verbose.into_iter().map(|x| print_string.push_str(&x.string));
-    // logdata.economy_verbose.into_iter().map(|x| print_string.push_str(&x.string));
-    // logdata.combat.into_iter().map(|x| print_string.push_str(&x.string));
-    // logdata.savegame.into_iter().map(|x| print_string.push_str(&x.string));
-    // logdata.none.into_iter().map(|x| print_string.push_str(&x.string));
-
-    // let mut outputfile = File::create("x_output/penis.log").expect("something");
-    // outputfile.write_all(&print_string.as_bytes()).expect("else");
-    // orbtk::initialize();
-    // println!("{:#?}", logdata.general.len())
-    logdata
+    (logdata, tag_list)
 }
 
-fn sort_log(entry: &str) -> Option<ErrTag> {
-    match entry {
-        "[General]" => Some(ErrTag::General),
-        "[=ERROR=]" => Some(ErrTag::Error),
-        "[Scripts]" => Some(ErrTag::Scripts),
-        "[Scripts_Verbose]" => Some(ErrTag::ScriptsVerbose),
-        "[Economy_Verbose]" => Some(ErrTag::EconomyVerbose),
-        "[Combat]" => Some(ErrTag::Combat),
-        "[Savegame]" => Some(ErrTag::Savegame),
-        "[None]" => Some(ErrTag::None),
-        _ => None,
+fn sort_log(entry: &str) -> Option<String> {
+    if entry.contains("[") && entry.to_string().pop() == Some(']') {
+        let mut tag = entry.replace("[", "").replace("]", "").to_lowercase();
+        if tag == "=error=".to_string() {
+            tag = "error".to_string()
+        }
+        return Some(tag);
+    // return tag
+    } else {
+        return None;
     }
 }
 
-fn set_general_struct(logdata: &mut LogData, word: String, time: f64, message: String) {
-    logdata.general.push(General {
-        string: word.to_string(),
+fn set_entry_struct(
+    logdata: &mut Vec<Entry>,
+    word: String,
+    time: f64,
+    message: String,
+    tag: String,
+) {
+    logdata.push(Entry {
+        string: word,
         time: time,
         message: message,
-        tag: "General".to_string(),
-    })
-}
-fn set_error_struct(logdata: &mut LogData, word: String, time: f64, message: String) {
-    logdata.error.push(Error {
-        string: word.to_string(),
-        time: time,
-        message: message,
-        tag: "Error".to_string(),
-    })
-}
-fn set_scripts_struct(logdata: &mut LogData, word: String, time: f64, message: String) {
-    logdata.scripts.push(Scripts {
-        string: word.to_string(),
-        time: time,
-        message: message,
-        tag: "Scripts".to_string(),
-    })
-}
-fn set_scripts_verbose_struct(logdata: &mut LogData, word: String, time: f64, message: String) {
-    logdata.scripts_verbose.push(ScriptsVerbose {
-        string: word.to_string(),
-        time: time,
-        message: message,
-        tag: "Scripts_Verbose".to_string(),
-    })
-}
-fn set_economy_verbose_struct(logdata: &mut LogData, word: String, time: f64, message: String) {
-    logdata.economy_verbose.push(EconomyVerbose {
-        string: word.to_string(),
-        time: time,
-        message: message,
-        tag: "Economy_Verbose".to_string(),
-    })
-}
-fn set_combat_struct(logdata: &mut LogData, word: String, time: f64, message: String) {
-    logdata.combat.push(Combat {
-        string: word.to_string(),
-        time: time,
-        message: message,
-        tag: "Combat".to_string(),
-    })
-}
-fn set_savegame_struct(logdata: &mut LogData, word: String, time: f64, message: String) {
-    logdata.savegame.push(Savegame {
-        string: word.to_string(),
-        time: time,
-        message: message,
-        tag: "Savegame".to_string(),
-    })
-}
-fn set_none_struct(logdata: &mut LogData, word: String, time: f64, message: String) {
-    logdata.none.push(None {
-        string: word.to_string(),
-        time: time,
-        message: message,
-        tag: "None".to_string(),
+        tag: tag,
     })
 }
 
-pub fn print_clean_log(logdata: LogData) {
+pub fn print_clean_log(logdata: &Vec<&Entry>) {
     let mut print_string = String::new();
-    for entry in logdata.general {
-        print_string.push_str(&entry.string)
-    }
-    for entry in logdata.error {
-        print_string.push_str(&entry.string)
-    }
-    for entry in logdata.scripts {
-        print_string.push_str(&entry.string)
-    }
-    for entry in logdata.scripts_verbose {
-        print_string.push_str(&entry.string)
-    }
-    for entry in logdata.economy_verbose {
-        print_string.push_str(&entry.string)
-    }
-    for entry in logdata.combat {
-        print_string.push_str(&entry.string)
-    }
-    for entry in logdata.savegame {
-        print_string.push_str(&entry.string)
-    }
-    for entry in logdata.none {
-        print_string.push_str(&entry.string)
+    let mut old_tag = "".to_string();
+    for entry in logdata {
+        if old_tag == entry.tag {
+            if entry.string.contains("\r\n ") {
+                let new = entry.string.replace("\r\n ", "\r\n   ");
+                print_string.push_str(&format!("  {}", &new))
+            } else{
+            print_string.push_str(&format!("  {}", &entry.string))}
+            // print_string.push_str(&entry.string);
+        } else {
+            old_tag = entry.tag.clone();
+            print_string.push_str(&entry.string);
+            // print_string = print_string.trim_end().to_string();
+            // print_string.push_str(&entry.string.replace("\r\n  ","\r\n"));
+        }
     }
     let mut outputfile =
         File::create("E:/Rust/Projects/x4_debug_parser/x_output/penis.log").expect("something");
@@ -315,22 +137,3 @@ pub fn print_clean_log(logdata: LogData) {
         .write_all(&print_string.as_bytes())
         .expect("else");
 }
-
-// fn main() {
-//     let debug_file =
-//         &fs::read_to_string("C:/Users/bad wife/Documents/Egosoft/X4/77065308/x4debug.log");
-//     if let Ok(debug) = debug_file {
-//         let mut clean_debug = "".to_string();
-//         for line in debug.lines() {
-//             if !line.contains(".sig")
-//                 && !line.contains("(error: 14)")
-//                 && !line.contains("======================================")
-//             {
-//                 clean_debug.push_str(line);
-//                 clean_debug.push_str("\n");
-//             }
-//         }
-//         let mut outputfile = File::create("E:/Rust/Projects/x4_debug_parser/x_output/clean_debug.log").expect("something");
-//         outputfile.write_all(&clean_debug.as_bytes()).expect("else");
-//     }
-// }

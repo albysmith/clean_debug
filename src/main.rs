@@ -33,46 +33,50 @@ fn main() {
         .get_matches();
 
     let log = check_log_file(matches.value_of("log_file"));
-    let logdata = parse_debug(&log);
-    print_clean_log(logdata.clone());
+    let parsed_log = parse_debug(&log);
+    let logdata = parsed_log.0;
+    let tag_list = parsed_log.1;
+    // println!("logdata: {} {:?}", logdata.len(), logdata);
+    // print_clean_log(logdata.clone());
 
     if let Some(value) = matches.value_of("tags") {
-        match_data(value.to_string(), &logdata)
+        match_data(value.to_string(), &logdata, &tag_list)
     }
 }
 
-fn more_input() -> String {
+fn more_input(tag_list: &Vec<String>) -> String {
     let mut stdout = stdout();
-    stdout.write(b"Set New Filter: choose from list below. Type end to close program.\n  general | error | scripts | scripts_verbose | economy_verbose | combat | savegame | none\n").unwrap();
+    let mut text =
+        "Set New Filter: choose from list below. Type end to close program.\n ".to_string();
+    for tag in tag_list {
+        text.push_str(&format!(" | {}", tag));
+    }
+    text.push_str("\n");
+    // let text: String = tag_list.iter().map(|tag| tag.push_str(" |")).collect();
+    stdout.write(text.as_bytes()).unwrap();
     stdout.flush().unwrap();
     let mut buffer = String::new();
     io::stdin().read_line(&mut buffer).unwrap_or_default();
     buffer
 }
 
-fn match_data(values: String, logdata: &LogData) {
-    // if values == "end".to_string() {
-    //     close_program();
-    // } else {
-    for tag in values.split_whitespace() {
-        match tag {
-            "general" => println!("General: {}", logdata.general.len()),
-            "error" => println!("ERROR: {}", logdata.error.len()),
-            "scripts" => println!("Scripts: {}", logdata.scripts.len()),
-            "scripts_verbose" => println!("ScriptsVerbose: {}", logdata.scripts_verbose.len()),
-            "economy_verbose" => println!("EconomyVerbose: {}", logdata.economy_verbose.len()),
-            "combat" => println!("Combat: {}", logdata.combat.len()),
-            "savegame" => println!("Savegame: {}", logdata.savegame.len()),
-            "none" => println!("None: {}", logdata.none.len()),
-            "all" => println!("And you thought you would get them all muahahaha"),
-            "end" => close_program(),
-            _ => println!("Found a Qux"),
-        };
-    }
+fn match_data(values: String, logdata: &Vec<Entry>, tag_list: &Vec<String>) {
+    if values == "end\r\n".to_string() {
+        close_program();
+    } else {
+        // let mut tag_vec = vec![];
+        let tags: Vec<&str> = values.split_whitespace().collect();
+        // println!("logdata: {}", logdata.len());
+        let filter: Vec<&Entry> = logdata
+            .iter()
+            .filter(|log| tags.contains(&log.tag.as_str()))
+            .collect();
+        print_clean_log(&filter);
+        // println!("{}: {}", tag, filter.len());
 
-    let result = more_input();
-    match_data(result, logdata)
-    // }
+        let result = more_input(tag_list);
+        match_data(result, logdata, tag_list)
+    }
 }
 
 fn close_program() {
