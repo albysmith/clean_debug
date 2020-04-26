@@ -26,9 +26,7 @@ pub struct Entry {
 }
 
 pub fn parse_debug(debug: &String) -> (Vec<Entry>, Vec<String>) {
-    // let mut parsed_log_entries = LogEntries::default();
     let mut logdata = vec![];
-    // let mut print_string = String::new();
     let mut tag_list = vec![];
     let log = debug.replace("\r\n", " NEWLINE ");
     let mut timeflag = false;
@@ -47,7 +45,6 @@ pub fn parse_debug(debug: &String) -> (Vec<Entry>, Vec<String>) {
             if !tag_list.contains(&tag) {
                 tag_list.push(tag.clone());
             }
-
             // do something with the old string and get it out of here
             if string.contains("======================================")
                 || string.contains("(error: 14)")
@@ -71,17 +68,13 @@ pub fn parse_debug(debug: &String) -> (Vec<Entry>, Vec<String>) {
                 timeflag = true;
             };
             enum_flag = tag;
-
-        // new string and new enumflag
         } else if timeflag == false {
-            //  oldstring
             string.push_str(&format!(" {}", word));
             message.push_str(&format!("{} ", word))
         }
 
         // some handling for adding the time to the error as some TIME type
     }
-
     (logdata, tag_list)
 }
 
@@ -92,7 +85,6 @@ fn sort_log(entry: &str) -> Option<String> {
             tag = "error".to_string()
         }
         return Some(tag);
-    // return tag
     } else {
         return None;
     }
@@ -123,12 +115,9 @@ pub fn print_clean_log(logdata: &Vec<&Entry>) {
                 print_string.push_str(&format!("  {}", &new))
             } else{
             print_string.push_str(&format!("  {}", &entry.string))}
-            // print_string.push_str(&entry.string);
         } else {
             old_tag = entry.tag.clone();
             print_string.push_str(&entry.string);
-            // print_string = print_string.trim_end().to_string();
-            // print_string.push_str(&entry.string.replace("\r\n  ","\r\n"));
         }
     }
     let mut outputfile =

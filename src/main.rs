@@ -8,12 +8,6 @@ use std::io::{self, stdin, stdout, Read, Write};
 mod debug_parser;
 use debug_parser::*;
 
-// TODO
-// Create parsing for custom tags in debug text
-// Make everything generic to support new tags
-// (no special structs or functions, etc. try to remove named match statements)
-//
-
 fn main() {
     let matches = App::new("Log Horizon")
         .arg(
@@ -36,7 +30,6 @@ fn main() {
     let parsed_log = parse_debug(&log);
     let logdata = parsed_log.0;
     let tag_list = parsed_log.1;
-    // println!("logdata: {} {:?}", logdata.len(), logdata);
     // print_clean_log(logdata.clone());
 
     if let Some(value) = matches.value_of("tags") {
@@ -64,16 +57,12 @@ fn match_data(values: String, logdata: &Vec<Entry>, tag_list: &Vec<String>) {
     if values == "end\r\n".to_string() {
         close_program();
     } else {
-        // let mut tag_vec = vec![];
         let tags: Vec<&str> = values.split_whitespace().collect();
-        // println!("logdata: {}", logdata.len());
         let filter: Vec<&Entry> = logdata
             .iter()
             .filter(|log| tags.contains(&log.tag.as_str()))
             .collect();
         print_clean_log(&filter);
-        // println!("{}: {}", tag, filter.len());
-
         let result = more_input(tag_list);
         match_data(result, logdata, tag_list)
     }
