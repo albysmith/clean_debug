@@ -105,7 +105,7 @@ fn set_entry_struct(
     })
 }
 
-pub fn print_clean_log(logdata: &Vec<&Entry>) {
+pub fn print_clean_log(logdata: &Vec<&Entry>, out_folder: &String) {
     let mut print_string = String::new();
     let mut old_tag = "".to_string();
     for entry in logdata {
@@ -121,7 +121,7 @@ pub fn print_clean_log(logdata: &Vec<&Entry>) {
         }
     }
     let mut outputfile =
-        File::create("E:/Rust/Projects/x4_debug_parser/x_output/penis.log").expect("something");
+        File::create(format!("{}/filtered_debug.log", out_folder)).expect("something");
     outputfile
         .write_all(&print_string.as_bytes())
         .expect("else");

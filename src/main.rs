@@ -18,6 +18,13 @@ fn main() {
                 .takes_value(true),
         )
         .arg(
+            Arg::with_name("out_file")
+                .help("the output file folder (folder MUST exist)")
+                .short("o")
+                .long("output")
+                .takes_value(true),
+        )
+        .arg(
             Arg::with_name("tags")
                 .help("the tags you want to view")
                 .short("t")
@@ -27,13 +34,14 @@ fn main() {
         .get_matches();
 
     let log = check_log_file(matches.value_of("log_file"));
+    let output = check_out_file(matches.value_of("out_file"));
     let parsed_log = parse_debug(&log);
     let logdata = parsed_log.0;
     let tag_list = parsed_log.1;
     // print_clean_log(logdata.clone());
 
     if let Some(value) = matches.value_of("tags") {
-        match_data(value.to_string(), &logdata, &tag_list)
+        match_data(value.to_string(), &logdata, &tag_list, &output)
     }
 }
 
@@ -53,7 +61,7 @@ fn more_input(tag_list: &Vec<String>) -> String {
     buffer
 }
 
-fn match_data(values: String, logdata: &Vec<Entry>, tag_list: &Vec<String>) {
+fn match_data(values: String, logdata: &Vec<Entry>, tag_list: &Vec<String>, output: &String) {
     if values == "end\r\n".to_string() {
         close_program();
     } else {
@@ -62,9 +70,9 @@ fn match_data(values: String, logdata: &Vec<Entry>, tag_list: &Vec<String>) {
             .iter()
             .filter(|log| tags.contains(&log.tag.as_str()))
             .collect();
-        print_clean_log(&filter);
+        print_clean_log(&filter, &output);
         let result = more_input(tag_list);
-        match_data(result, logdata, tag_list)
+        match_data(result, logdata, tag_list, output)
     }
 }
 
@@ -100,5 +108,14 @@ fn check_log_file(debug_path: Option<&str>) -> String {
             error_then_close("Debug file not contained in current directory, and path not supplied. Press any key to close program.");
             return String::new();
         }
+    }
+}
+
+fn check_out_file(debug_path: Option<&str>) -> String {
+    if let Some(path) = debug_path {
+        return path.to_string()
+    } else {
+        let env_path = env::current_dir().expect("current dir");
+        return env_path.to_str().expect("path").to_string();
     }
 }
