@@ -6,9 +6,10 @@ edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[features]
-debug = ["orbtk/debug"]
+# [features]
+# debug = ["orbtk/debug"]
 
 [dependencies]
-# orbtk = "0.3.1-alpha1"
-orbtk = { git = "https://github.com/redox-os/orbtk.git", branch= "develop" }
+# orbtk = "0.3.1-alpha2"
+# orbtk = { git = "https://github.com/redox-os/orbtk.git", branch= "develop" }
+clap = "2.33.0"

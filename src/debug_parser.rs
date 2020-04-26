@@ -2,9 +2,10 @@ use std::fs;
 use std::fs::File;
 use std::io;
 use std::io::{Read, Write};
+use std::str::FromStr;
 
 #[derive(PartialEq)]
-enum ErrTag {
+pub enum ErrTag {
     General,
     Error,
     Scripts,
@@ -13,7 +14,27 @@ enum ErrTag {
     Combat,
     Savegame,
     None,
+    // All,
 }
+
+// impl FromStr for ErrTag {
+//     type Err = &'static str;
+
+//     fn from_str(s: &str) -> Result<Self, Self::Err> {
+//         match s {
+//             "general" => Ok(ErrTag::General),
+//             "error" => Ok(ErrTag::Error),
+//             "scripts" => Ok(ErrTag::Scripts),
+//             "scripts_verbose" => Ok(ErrTag::ScriptsVerbose),
+//             "economy_verbose" => Ok(ErrTag::EconomyVerbose),
+//             "combat" => Ok(ErrTag::Combat),
+//             "savegame" => Ok(ErrTag::Savegame),
+//             "none" => Ok(ErrTag::None),
+//             // "all" => Ok(ErrTag::All),
+//             _ => Err("no match"),
+//         }
+//     }
+// }
 
 #[derive(Default, Debug, Clone)]
 pub struct LogData {
@@ -214,7 +235,6 @@ fn set_error_struct(logdata: &mut LogData, word: String, time: f64, message: Str
     })
 }
 fn set_scripts_struct(logdata: &mut LogData, word: String, time: f64, message: String) {
-    
     logdata.scripts.push(Scripts {
         string: word.to_string(),
         time: time,
@@ -236,7 +256,6 @@ fn set_economy_verbose_struct(logdata: &mut LogData, word: String, time: f64, me
         time: time,
         message: message,
         tag: "Economy_Verbose".to_string(),
-
     })
 }
 fn set_combat_struct(logdata: &mut LogData, word: String, time: f64, message: String) {
@@ -262,6 +281,39 @@ fn set_none_struct(logdata: &mut LogData, word: String, time: f64, message: Stri
         message: message,
         tag: "None".to_string(),
     })
+}
+
+pub fn print_clean_log(logdata: LogData) {
+    let mut print_string = String::new();
+    for entry in logdata.general {
+        print_string.push_str(&entry.string)
+    }
+    for entry in logdata.error {
+        print_string.push_str(&entry.string)
+    }
+    for entry in logdata.scripts {
+        print_string.push_str(&entry.string)
+    }
+    for entry in logdata.scripts_verbose {
+        print_string.push_str(&entry.string)
+    }
+    for entry in logdata.economy_verbose {
+        print_string.push_str(&entry.string)
+    }
+    for entry in logdata.combat {
+        print_string.push_str(&entry.string)
+    }
+    for entry in logdata.savegame {
+        print_string.push_str(&entry.string)
+    }
+    for entry in logdata.none {
+        print_string.push_str(&entry.string)
+    }
+    let mut outputfile =
+        File::create("E:/Rust/Projects/x4_debug_parser/x_output/penis.log").expect("something");
+    outputfile
+        .write_all(&print_string.as_bytes())
+        .expect("else");
 }
 
 // fn main() {

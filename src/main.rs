@@ -1,56 +1,111 @@
+use clap::{App, Arg};
+use std::env;
 use std::fs;
-use std::fs::File;
-use std::io::{Read, Write};
+use std::io::{self, stdin, stdout, Read, Write};
+// use std::fs::File;
+// use std::io::{Read, Write};
 
 mod debug_parser;
 use debug_parser::*;
 
+// TODO
+// Create parsing for custom tags in debug text
+// Make everything generic to support new tags
+// (no special structs or functions, etc. try to remove named match statements)
+//
+
 fn main() {
-    let debug_file =
-        &fs::read_to_string("C:/Users/bad wife/Documents/Egosoft/X4/77065308/x4debug.log");
-    if let Ok(log) = debug_file {
-        let logdata = parse_debug(log);
+    let matches = App::new("Log Horizon")
+        .arg(
+            Arg::with_name("log_file")
+                .help("the log file to parse")
+                .short("l")
+                .long("log")
+                .takes_value(true),
+        )
+        .arg(
+            Arg::with_name("tags")
+                .help("the tags you want to view")
+                .short("t")
+                .long("tags")
+                .default_value("error"),
+        )
+        .get_matches();
 
-        println!("General: {}", logdata.general.len());
-        println!("ERROR: {}", logdata.error.len());
-        println!("Scripts: {}", logdata.scripts.len());
-        println!("ScriptsVerbose: {}", logdata.scripts_verbose.len());
-        println!("EconomyVerbose: {}", logdata.economy_verbose.len());
-        println!("Combat: {}", logdata.combat.len());
-        println!("Savegame: {}", logdata.savegame.len());
-        println!("None: {}", logdata.none.len());
+    let log = check_log_file(matches.value_of("log_file"));
+    let logdata = parse_debug(&log);
+    print_clean_log(logdata.clone());
 
-        let mut print_string = String::new();
-        for entry in logdata.general {
-            print_string.push_str(&entry.string)
-        }
-        for entry in logdata.error {
-            print_string.push_str(&entry.string)
-        }
-        for entry in logdata.scripts {
-            print_string.push_str(&entry.string)
-        }
-        for entry in logdata.scripts_verbose {
-            print_string.push_str(&entry.string)
-        }
-        for entry in logdata.economy_verbose {
-            print_string.push_str(&entry.string)
-        }
-        for entry in logdata.combat {
-            print_string.push_str(&entry.string)
-        }
-        for entry in logdata.savegame {
-            print_string.push_str(&entry.string)
-        }
-        for entry in logdata.none {
-            print_string.push_str(&entry.string)
-        }
-        let mut outputfile = File::create("x_output/penis.log").expect("something");
-        outputfile
-            .write_all(&print_string.as_bytes())
-            .expect("else");
+    if let Some(value) = matches.value_of("tags") {
+        match_data(value.to_string(), &logdata)
     }
-    // else {
-    //     // error path
+}
+
+fn more_input() -> String {
+    let mut stdout = stdout();
+    stdout.write(b"Set New Filter: choose from list below. Type end to close program.\n  general | error | scripts | scripts_verbose | economy_verbose | combat | savegame | none\n").unwrap();
+    stdout.flush().unwrap();
+    let mut buffer = String::new();
+    io::stdin().read_line(&mut buffer).unwrap_or_default();
+    buffer
+}
+
+fn match_data(values: String, logdata: &LogData) {
+    // if values == "end".to_string() {
+    //     close_program();
+    // } else {
+    for tag in values.split_whitespace() {
+        match tag {
+            "general" => println!("General: {}", logdata.general.len()),
+            "error" => println!("ERROR: {}", logdata.error.len()),
+            "scripts" => println!("Scripts: {}", logdata.scripts.len()),
+            "scripts_verbose" => println!("ScriptsVerbose: {}", logdata.scripts_verbose.len()),
+            "economy_verbose" => println!("EconomyVerbose: {}", logdata.economy_verbose.len()),
+            "combat" => println!("Combat: {}", logdata.combat.len()),
+            "savegame" => println!("Savegame: {}", logdata.savegame.len()),
+            "none" => println!("None: {}", logdata.none.len()),
+            "all" => println!("And you thought you would get them all muahahaha"),
+            "end" => close_program(),
+            _ => println!("Found a Qux"),
+        };
+    }
+
+    let result = more_input();
+    match_data(result, logdata)
     // }
+}
+
+fn close_program() {
+    std::process::exit(0x0100);
+}
+
+fn error_then_close(message: &str) {
+    let mut stdout = stdout();
+    stdout.write(message.as_bytes()).unwrap();
+    stdout.flush().unwrap();
+    stdin().read(&mut [0]).unwrap();
+    close_program();
+}
+
+fn check_log_file(debug_path: Option<&str>) -> String {
+    if let Some(path) = debug_path {
+        let result = &fs::read_to_string(path);
+        if let Ok(contents) = result {
+            return contents.to_owned();
+        } else {
+            error_then_close(
+                "Debug log not found at path supplied. Press any key to close program.",
+            );
+            return String::new();
+        }
+    } else {
+        let env_path = &env::current_dir().expect("current dir").join("x4debug.log");
+        let result = &fs::read_to_string(env_path);
+        if let Ok(contents) = result {
+            return contents.to_owned();
+        } else {
+            error_then_close("Debug file not contained in current directory, and path not supplied. Press any key to close program.");
+            return String::new();
+        }
+    }
 }
