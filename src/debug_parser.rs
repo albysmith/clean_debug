@@ -49,16 +49,15 @@ pub fn parse_debug(debug: &String) -> (Vec<Entry>, Vec<String>) {
             if string.contains("======================================")
                 || string.contains("(error: 14)")
                 || string.contains(".sig")
+                || (string.contains("*** Context:md") && !string.contains("NEWLINE"))
             {
                 string = word.to_string();
                 message = String::new();
                 timeflag = true;
-            } else if string.contains("*** Context:md") && !string.contains("NEWLINE") {
-                // string.push_str(&format!(" {}", word));
-                // message.push_str(&format!("{} ", word));
-                string = word.to_string();
-                message = String::new();
-                timeflag = true;
+            // } else if string.contains("*** Context:md") && !string.contains("NEWLINE") {
+            //     string = word.to_string();
+            //     message = String::new();
+            //     timeflag = true;
             } else {
                 string = string.replace("NEWLINE", "\r\n");
                 message = message.replace("NEWLINE", "\r\n");
