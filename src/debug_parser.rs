@@ -20,8 +20,13 @@ pub fn parse_debug(debug: &String) -> (Vec<Entry>, Vec<String>) {
     let mut enum_flag = String::new();
     for word in log.split_whitespace() {
         if timeflag {
+            // println!("{}",word);
             string.push_str(&format!(" {}", word));
-            time = word.parse().expect("parse word as num");
+            if let Ok(t) = word.parse::<f64>() {
+                time = t;
+            } else {
+                time = 0.0;
+            }
             timeflag = false;
         } else if let Some(tag) = sort_log(word) {
             if !tag_list.contains(&tag) {
