@@ -141,8 +141,11 @@ fn check_out_file(debug_path: Option<&str>) -> String {
             return path.to_string();
         }
     } else {
-        let env_path = env::current_dir().expect("current dir");
-        return env_path.to_str().expect("path").to_string();
+        let env_path = env::current_dir().expect("ERROR: failed to find current directory");
+        return env_path
+            .to_str()
+            .expect("ERROR: failed to convert filepath to string")
+            .to_string();
     }
 }
 
@@ -150,18 +153,27 @@ fn check_log_path(debug_path: Option<&str>) -> String {
     if let Some(path) = debug_path {
         return path.to_string();
     } else {
-        let env_path = env::current_dir().expect("current dir").join("x4debug.log");
-        return env_path.to_str().expect("path").to_string();
+        let env_path = env::current_dir()
+            .expect("ERROR: failed to find current directory")
+            .join("x4debug.log");
+        return env_path
+            .to_str()
+            .expect("ERROR: failed to convert filepath to string")
+            .to_string();
     }
 }
 
 fn check_for_file_updates(position: usize, log_path: &String) -> (Option<String>, usize) {
-    let mut read = &File::open(log_path).expect("sad");
+    let mut read = &File::open(log_path).expect("ERROR: failed to read log as bytes for update");
     let mut buffer = Vec::new();
-    read.seek(SeekFrom::Start(position as u64)).unwrap();
-    read.read_to_end(&mut buffer).unwrap();
+    read.seek(SeekFrom::Start(position as u64))
+        .expect("ERROR: failed to seek position in file for update");
+    read.read_to_end(&mut buffer)
+        .expect("ERROR: failed to read new portion of file for update");
     if buffer.len() > 0 {
-        let new_string = str::from_utf8(&buffer).expect("turn to string").to_string();
+        let new_string = str::from_utf8(&buffer)
+            .expect("ERROR: failed to convert bytes to string for update")
+            .to_string();
         let new_position = position + buffer.len();
         return (Some(new_string), new_position);
     } else {

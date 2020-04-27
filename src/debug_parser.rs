@@ -102,9 +102,9 @@ pub fn print_clean_log(logdata: &Vec<&Entry>, out_folder: &String) {
             print_string.push_str(&entry.string);
         }
     }
-    let mut outputfile =
-        File::create(format!("{}/filtered_debug.log", out_folder)).expect("something");
+    let mut outputfile = File::create(format!("{}/filtered_debug.log", out_folder))
+        .expect("ERROR: failed to create output file at folder location");
     outputfile
         .write_all(&print_string.as_bytes())
-        .expect("else");
+        .expect("ERROR: failed to write output file");
 }
