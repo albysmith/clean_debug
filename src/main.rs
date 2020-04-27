@@ -3,6 +3,7 @@ use std::env;
 use std::fs::{self, File};
 use std::io::prelude::*;
 use std::io::{self, stdin, stdout, Read, SeekFrom, Write};
+use std::path::Path;
 use std::str;
 
 mod debug_parser;
@@ -133,7 +134,12 @@ fn read_log_file(debug_path: &String) -> String {
 
 fn check_out_file(debug_path: Option<&str>) -> String {
     if let Some(path) = debug_path {
-        return path.to_string();
+        if Path::new(path).exists() {
+            return path.to_string();
+        } else {
+            error_then_close("Output folder not found at path supplied. Please make sure folder exists. Press any key to close program.");
+            return path.to_string();
+        }
     } else {
         let env_path = env::current_dir().expect("current dir");
         return env_path.to_str().expect("path").to_string();
