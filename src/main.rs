@@ -1,9 +1,9 @@
 use clap::{App, Arg};
 use std::env;
-use std::fs;
-use std::io::{self, stdin, stdout, Read, Write};
-// use std::fs::File;
-// use std::io::{Read, Write};
+use std::fs::{self, File};
+use std::io::prelude::*;
+use std::io::{self, stdin, stdout, Read, SeekFrom, Write};
+use std::str;
 
 mod debug_parser;
 use debug_parser::*;
@@ -33,15 +33,24 @@ fn main() {
         )
         .get_matches();
 
-    let log = check_log_file(matches.value_of("log_file"));
+    let log_path = check_log_path(matches.value_of("log_file"));
+    let log = read_log_file(&log_path);
     let output = check_out_file(matches.value_of("out_file"));
     let parsed_log = parse_debug(&log);
     let logdata = parsed_log.0;
+    let position = log.as_bytes().len();
     let tag_list = parsed_log.1;
     // print_clean_log(logdata.clone());
 
     if let Some(value) = matches.value_of("tags") {
-        match_data(value.to_string(), &logdata, &tag_list, &output)
+        match_data(
+            value.to_string(),
+            logdata,
+            tag_list,
+            &output,
+            position,
+            &log_path,
+        )
     }
 }
 
@@ -61,7 +70,14 @@ fn more_input(tag_list: &Vec<String>) -> String {
     buffer
 }
 
-fn match_data(values: String, logdata: &Vec<Entry>, tag_list: &Vec<String>, output: &String) {
+fn match_data(
+    values: String,
+    logdata: Vec<Entry>,
+    tag_list: Vec<String>,
+    output: &String,
+    position: usize,
+    log_path: &String,
+) {
     if values == "end\r\n".to_string() {
         close_program();
     } else {
@@ -71,8 +87,25 @@ fn match_data(values: String, logdata: &Vec<Entry>, tag_list: &Vec<String>, outp
             .filter(|log| tags.contains(&log.tag.as_str()))
             .collect();
         print_clean_log(&filter, &output);
-        let result = more_input(tag_list);
-        match_data(result, logdata, tag_list, output)
+        let result = more_input(&tag_list);
+        let update = check_for_file_updates(position, log_path);
+        if let Some(new_string) = update.0 {
+            let parsed_log = parse_debug(&new_string);
+            let new_logdata = [logdata, parsed_log.0].concat();
+            let mut new_tag_list = [tag_list, parsed_log.1].concat();
+            new_tag_list.sort();
+            new_tag_list.dedup();
+            match_data(
+                result,
+                new_logdata,
+                new_tag_list,
+                output,
+                update.1,
+                log_path,
+            )
+        } else {
+            match_data(result, logdata, tag_list, output, position, log_path)
+        }
     }
 }
 
@@ -88,34 +121,44 @@ fn error_then_close(message: &str) {
     close_program();
 }
 
-fn check_log_file(debug_path: Option<&str>) -> String {
-    if let Some(path) = debug_path {
-        let result = &fs::read_to_string(path);
-        if let Ok(contents) = result {
-            return contents.to_owned();
-        } else {
-            error_then_close(
-                "Debug log not found at path supplied. Press any key to close program.",
-            );
-            return String::new();
-        }
+fn read_log_file(debug_path: &String) -> String {
+    let result = &fs::read_to_string(debug_path);
+    if let Ok(contents) = result {
+        return contents.to_owned();
     } else {
-        let env_path = &env::current_dir().expect("current dir").join("x4debug.log");
-        let result = &fs::read_to_string(env_path);
-        if let Ok(contents) = result {
-            return contents.to_owned();
-        } else {
-            error_then_close("Debug file not contained in current directory, and path not supplied. Press any key to close program.");
-            return String::new();
-        }
+        error_then_close("Debug log not found at path supplied or in current directory. Press any key to close program.");
+        return String::new();
     }
 }
 
 fn check_out_file(debug_path: Option<&str>) -> String {
     if let Some(path) = debug_path {
-        return path.to_string()
+        return path.to_string();
     } else {
         let env_path = env::current_dir().expect("current dir");
         return env_path.to_str().expect("path").to_string();
+    }
+}
+
+fn check_log_path(debug_path: Option<&str>) -> String {
+    if let Some(path) = debug_path {
+        return path.to_string();
+    } else {
+        let env_path = env::current_dir().expect("current dir").join("x4debug.log");
+        return env_path.to_str().expect("path").to_string();
+    }
+}
+
+fn check_for_file_updates(position: usize, log_path: &String) -> (Option<String>, usize) {
+    let mut read = &File::open(log_path).expect("sad");
+    let mut buffer = Vec::new();
+    read.seek(SeekFrom::Start(position as u64)).unwrap();
+    read.read_to_end(&mut buffer).unwrap();
+    if buffer.len() > 0 {
+        let new_string = str::from_utf8(&buffer).expect("turn to string").to_string();
+        let new_position = position + buffer.len();
+        return (Some(new_string), new_position);
+    } else {
+        return (None, position);
     }
 }

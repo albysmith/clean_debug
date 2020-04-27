@@ -1,21 +1,5 @@
-use std::fs;
 use std::fs::File;
-use std::io;
-use std::io::{Read, Write};
-use std::str::FromStr;
-
-// #[derive(PartialEq)]
-// pub enum ErrTag {
-//     General,
-//     Error,
-//     Scripts,
-//     ScriptsVerbose,
-//     EconomyVerbose,
-//     Combat,
-//     Savegame,
-//     None,
-//     Custom,
-// }
+use std::io::Write;
 
 #[derive(Default, Debug, Clone)]
 pub struct Entry {
@@ -36,14 +20,13 @@ pub fn parse_debug(debug: &String) -> (Vec<Entry>, Vec<String>) {
     let mut enum_flag = String::new();
     for word in log.split_whitespace() {
         if timeflag {
-            // println!("{}", word);
             string.push_str(&format!(" {}", word));
             time = word.parse().expect("parse word as num");
-            // println!("{}", time);
             timeflag = false;
         } else if let Some(tag) = sort_log(word) {
             if !tag_list.contains(&tag) {
                 tag_list.push(tag.clone());
+                tag_list.sort();
             }
             // do something with the old string and get it out of here
             if string.contains("======================================")
@@ -54,10 +37,6 @@ pub fn parse_debug(debug: &String) -> (Vec<Entry>, Vec<String>) {
                 string = word.to_string();
                 message = String::new();
                 timeflag = true;
-            // } else if string.contains("*** Context:md") && !string.contains("NEWLINE") {
-            //     string = word.to_string();
-            //     message = String::new();
-            //     timeflag = true;
             } else {
                 string = string.replace("NEWLINE", "\r\n");
                 message = message.replace("NEWLINE", "\r\n");
@@ -71,8 +50,6 @@ pub fn parse_debug(debug: &String) -> (Vec<Entry>, Vec<String>) {
             string.push_str(&format!(" {}", word));
             message.push_str(&format!("{} ", word))
         }
-
-        // some handling for adding the time to the error as some TIME type
     }
     (logdata, tag_list)
 }
@@ -112,8 +89,9 @@ pub fn print_clean_log(logdata: &Vec<&Entry>, out_folder: &String) {
             if entry.string.contains("\r\n ") {
                 let new = entry.string.replace("\r\n ", "\r\n   ");
                 print_string.push_str(&format!("  {}", &new))
-            } else{
-            print_string.push_str(&format!("  {}", &entry.string))}
+            } else {
+                print_string.push_str(&format!("  {}", &entry.string))
+            }
         } else {
             old_tag = entry.tag.clone();
             print_string.push_str(&entry.string);
